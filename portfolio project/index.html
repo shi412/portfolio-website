@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Shibin - AI & Data Science Developer Portfolio. Specializing in AI, Machine Learning, Data Science, and Cyber Security."/>
+  <title>Shibin | AI & Data Science Developer</title>
+
+  <!-- ═══ SECURITY HEADERS ═══ -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';
+    style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline';
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-src 'none';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+  "/>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()"/>
+  <meta http-equiv="X-Frame-Options" content="DENY"/>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       ANIMATED LOADING SCREEN
+  ══════════════════════════════════════════════ -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader-content">
+      <div class="loader-rings">
+        <div class="loader-ring ring-1"></div>
+        <div class="loader-ring ring-2"></div>
+        <div class="loader-ring ring-3"></div>
+      </div>
+      <div class="loader-text">
+        <span class="loader-logo"><span class="logo-accent">&lt;</span>Shibin<span class="logo-accent">/&gt;</span></span>
+        <div class="loader-bar">
+          <div class="loader-bar-fill" id="loaderBarFill"></div>
+        </div>
+        <span class="loader-status" id="loaderStatus">Initializing...</span>
+      </div>
+    </div>
+    <!-- Scanning lines -->
+    <div class="scan-line"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       GLOWING CURSOR FOLLOWER + 3D BLOB
+  ══════════════════════════════════════════════ -->
+  <div class="cursor-follower" id="cursorFollower">
+    <div class="cursor-glow"></div>
+  </div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-blob" id="cursorBlob"></div>
+
+  <!-- ══════════════════════════════════════════════
+       DYNAMIC BACKGROUND GRID CANVAS
+  ══════════════════════════════════════════════ -->
+  <canvas id="gridCanvas"></canvas>
+
+  <!-- ══════════════════════════════════════════════
+       PARTICLE BACKGROUND CANVAS
+  ══════════════════════════════════════════════ -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-accent">&lt;</span>Shibin<span class="logo-accent">/&gt;</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home"     class="nav-link" data-section="home">Home</a></li>
+        <li><a href="#about"    class="nav-link" data-section="about">About</a></li>
+        <li><a href="#skills"   class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#resume"   class="nav-link" data-section="resume">Resume</a></li>
+        <li><a href="#contact"  class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════ -->
+  <section class="section hero-section" id="home">
+    <div class="hero-container" data-parallax-container>
+
+      <!-- Left: Text -->
+      <div class="hero-text" data-parallax data-speed="0.02">
+        <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+          <span class="badge-pulse"></span>
+          <span>Open to Opportunities</span>
+        </div>
+
+        <h1 class="hero-greeting" data-aos="fade-right" data-aos-delay="200">
+          Hi there, I'm
+        </h1>
+        <h1 class="hero-name" data-aos="fade-right" data-aos-delay="300">
+          <span class="name-glow">Shibin</span>
+        </h1>
+        <div class="hero-title-row" data-aos="fade-right" data-aos-delay="400">
+          <span class="title-static">I'm an&nbsp;</span>
+          <span class="typewriter-wrap">
+            <span id="typewriter"></span><span class="cursor-blink">|</span>
+          </span>
+        </div>
+
+        <p class="hero-description" data-aos="fade-up" data-aos-delay="500">
+          Passionate about building intelligent systems at the intersection of
+          <span class="text-highlight">Artificial Intelligence</span>,
+          <span class="text-highlight">Data Science</span>, and
+          <span class="text-highlight">Cyber Security</span>.
+          Turning complex data into real-world impact.
+        </p>
+
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="600">
+          <div class="stat-item">
+            <span class="stat-num" data-count="10">0</span><span class="stat-plus">+</span>
+            <span class="stat-lbl">Projects</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-count="3">0</span><span class="stat-plus">+</span>
+            <span class="stat-lbl">Years Coding</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-count="5">0</span><span class="stat-plus">+</span>
+            <span class="stat-lbl">Technologies</span>
+          </div>
+        </div>
+
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="700">
+          <a href="#projects" class="btn btn-primary glow-btn" id="viewProjectsBtn">
+            <i class="fas fa-rocket"></i> View Projects
+          </a>
+          <a href="resume.pdf" download class="btn btn-outline" id="downloadResumeBtn">
+            <i class="fas fa-download"></i> Download Resume
+          </a>
+        </div>
+
+        <div class="hero-socials" data-aos="fade-up" data-aos-delay="800">
+          <a href="#" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a href="mailto:shibin@example.com" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <!-- Right: Photo -->
+      <div class="hero-photo" data-parallax data-speed="-0.03" data-aos="fade-left" data-aos-delay="400">
+        <div class="photo-outer-ring"></div>
+        <div class="photo-inner-ring"></div>
+        <div class="photo-glow-effect"></div>
+        <div class="photo-frame">
+          <img src="profile.jpg" alt="Shibin - AI & Data Science Developer" id="profilePhoto"/>
+        </div>
+        <!-- Floating skill chips -->
+        <div class="float-tag tag-1"><i class="fab fa-python"></i> Python</div>
+        <div class="float-tag tag-2"><i class="fas fa-brain"></i> AI / ML</div>
+        <div class="float-tag tag-3"><i class="fas fa-shield-alt"></i> Cyber Sec</div>
+        <div class="float-tag tag-4"><i class="fas fa-chart-bar"></i> Data Science</div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-cue">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <p>Scroll to explore</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 2 — ABOUT
+  ══════════════════════════════════════════════ -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Get to know me</span>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Bio card -->
+        <div class="about-bio glass-card" data-tilt data-aos="fade-right" data-aos-delay="100">
+          <div class="bio-avatar-small">
+            <img src="profile.jpg" alt="Shibin"/>
+          </div>
+          <h3>Who am I?</h3>
+          <p>
+            I'm <strong>Shibin</strong>, an AI & Data Science developer with a strong foundation in
+            programming, machine learning, and cyber security. I love solving complex problems
+            and building solutions that make data meaningful.
+          </p>
+          <p>
+            Currently pursuing a <strong>PG Diploma in AI, Data Science & Cyber Security</strong>,
+            I'm constantly learning and building projects that push the boundaries of what's possible
+            with intelligent systems.
+          </p>
+          <div class="bio-info-grid">
+            <div class="bio-info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>India</span>
+            </div>
+            <div class="bio-info-item">
+              <i class="fas fa-graduation-cap"></i>
+              <span>BCA + PG Diploma</span>
+            </div>
+            <div class="bio-info-item">
+              <i class="fas fa-code"></i>
+              <span>Full Stack Dev</span>
+            </div>
+            <div class="bio-info-item">
+              <i class="fas fa-language"></i>
+              <span>English, Hindi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills progress -->
+        <div class="about-skills" data-aos="fade-left" data-aos-delay="200">
+          <h3>Core Competencies</h3>
+          <div class="progress-list" id="progressList">
+            <div class="progress-item" data-percent="90">
+              <div class="progress-header">
+                <span><i class="fab fa-python"></i> Python</span>
+                <span class="progress-pct">90%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="90"></div>
+              </div>
+            </div>
+            <div class="progress-item" data-percent="80">
+              <div class="progress-header">
+                <span><i class="fas fa-brain"></i> Machine Learning</span>
+                <span class="progress-pct">80%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="80"></div>
+              </div>
+            </div>
+            <div class="progress-item" data-percent="75">
+              <div class="progress-header">
+                <span><i class="fas fa-chart-line"></i> Data Science</span>
+                <span class="progress-pct">75%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="75"></div>
+              </div>
+            </div>
+            <div class="progress-item" data-percent="70">
+              <div class="progress-header">
+                <span><i class="fab fa-js"></i> JavaScript</span>
+                <span class="progress-pct">70%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="70"></div>
+              </div>
+            </div>
+            <div class="progress-item" data-percent="72">
+              <div class="progress-header">
+                <span><i class="fas fa-shield-alt"></i> Cyber Security</span>
+                <span class="progress-pct">72%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="72"></div>
+              </div>
+            </div>
+            <div class="progress-item" data-percent="65">
+              <div class="progress-header">
+                <span><i class="fab fa-java"></i> Java</span>
+                <span class="progress-pct">65%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="65"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education snippet -->
+          <div class="edu-chips">
+            <div class="edu-chip">
+              <i class="fas fa-university"></i>
+              <div>
+                <strong>BCA</strong>
+                <small>Bachelor of Computer Applications</small>
+              </div>
+            </div>
+            <div class="edu-chip">
+              <i class="fas fa-robot"></i>
+              <div>
+                <strong>PG Diploma</strong>
+                <small>AI, Data Science & Cyber Security</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 3 — SKILLS
+  ══════════════════════════════════════════════ -->
+  <section class="section skills-section" id="skills">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">What I Work With</span>
+        <h2 class="section-title">My <span class="accent">Skills</span></h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Programming Languages -->
+        <div class="skill-category glass-card" data-tilt data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon"><i class="fas fa-code"></i></div>
+            <h3>Programming</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="skill-tag"><i class="fab fa-php"></i> PHP</span>
+            <span class="skill-tag"><i class="fas fa-terminal"></i> Bash</span>
+            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+          </div>
+        </div>
+
+        <!-- AI & ML -->
+        <div class="skill-category glass-card" data-tilt data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon ai-icon"><i class="fas fa-brain"></i></div>
+            <h3>AI & Data Science</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fas fa-fire"></i> TensorFlow</span>
+            <span class="skill-tag"><i class="fas fa-fire-flame-curved"></i> PyTorch</span>
+            <span class="skill-tag"><i class="fas fa-robot"></i> Scikit-learn</span>
+            <span class="skill-tag"><i class="fas fa-table"></i> Pandas</span>
+            <span class="skill-tag"><i class="fas fa-square-root-variable"></i> NumPy</span>
+            <span class="skill-tag"><i class="fas fa-chart-area"></i> Matplotlib</span>
+            <span class="skill-tag"><i class="fas fa-book-open"></i> NLP</span>
+            <span class="skill-tag"><i class="fas fa-eye"></i> OpenCV</span>
+          </div>
+        </div>
+
+        <!-- Cyber Security -->
+        <div class="skill-category glass-card" data-tilt data-aos="fade-up" data-aos-delay="300">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon sec-icon"><i class="fas fa-shield-halved"></i></div>
+            <h3>Cyber Security</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fas fa-network-wired"></i> Wireshark</span>
+            <span class="skill-tag"><i class="fas fa-bug"></i> Metasploit</span>
+            <span class="skill-tag"><i class="fas fa-lock"></i> Kali Linux</span>
+            <span class="skill-tag"><i class="fas fa-magnifying-glass"></i> Nmap</span>
+            <span class="skill-tag"><i class="fas fa-user-secret"></i> OSINT</span>
+            <span class="skill-tag"><i class="fas fa-key"></i> Cryptography</span>
+          </div>
+        </div>
+
+        <!-- Tools & Platforms -->
+        <div class="skill-category glass-card" data-tilt data-aos="fade-up" data-aos-delay="400">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon tools-icon"><i class="fas fa-wrench"></i></div>
+            <h3>Tools & Platforms</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+            <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
+            <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
+            <span class="skill-tag"><i class="fas fa-laptop-code"></i> VS Code</span>
+            <span class="skill-tag"><i class="fas fa-cloud"></i> Google Colab</span>
+            <span class="skill-tag"><i class="fas fa-book"></i> Jupyter</span>
+            <span class="skill-tag"><i class="fab fa-linux"></i> Linux</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 4 — PROJECTS
+  ══════════════════════════════════════════════ -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">What I've Built</span>
+        <h2 class="section-title">My <span class="accent">Projects</span></h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="projects-filter" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ai">AI / ML</button>
+        <button class="filter-btn" data-filter="data">Data Science</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card glass-card" data-tilt data-tilt-glare data-category="ai" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder ai-bg">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="project-overlay">
+              <a href="#" class="proj-btn">Live Demo <i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="proj-btn proj-btn-outline">GitHub <i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category-badge ai-badge">AI / ML</div>
+            <h3>AI Chatbot with NLP</h3>
+            <p>An intelligent conversation agent built with Python and NLTK. Trained on custom datasets with intent classification and entity recognition.</p>
+            <div class="project-tech">
+              <span>Python</span><span>NLTK</span><span>TensorFlow</span><span>Flask</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card" data-tilt data-tilt-glare data-category="data" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder data-bg">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="project-overlay">
+              <a href="#" class="proj-btn">Live Demo <i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="proj-btn proj-btn-outline">GitHub <i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category-badge data-badge">Data Science</div>
+            <h3>Stock Market Predictor</h3>
+            <p>Machine learning model using LSTM networks to predict stock prices. Features real-time data fetching, trend analysis, and visualization dashboard.</p>
+            <div class="project-tech">
+              <span>Python</span><span>Keras</span><span>Pandas</span><span>Plotly</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card" data-tilt data-tilt-glare data-category="security" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder sec-bg">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <div class="project-overlay">
+              <a href="#" class="proj-btn">Live Demo <i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="proj-btn proj-btn-outline">GitHub <i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category-badge sec-badge">Security</div>
+            <h3>Network Intrusion Detector</h3>
+            <p>ML-powered IDS that monitors network traffic and flags anomalies using ensemble methods. Achieves 95%+ detection accuracy on benchmark datasets.</p>
+            <div class="project-tech">
+              <span>Python</span><span>Scikit-learn</span><span>Scapy</span><span>XGBoost</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card" data-tilt data-tilt-glare data-category="web" data-aos="fade-up" data-aos-delay="400">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder web-bg">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="project-overlay">
+              <a href="#" class="proj-btn">Live Demo <i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="proj-btn proj-btn-outline">GitHub <i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category-badge web-badge">Web</div>
+            <h3>Data Analytics Dashboard</h3>
+            <p>Interactive web dashboard for visualizing large datasets with real-time charts, filters, and export functionality. Built with PHP and JavaScript.</p>
+            <div class="project-tech">
+              <span>PHP</span><span>JavaScript</span><span>Chart.js</span><span>MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card" data-tilt data-tilt-glare data-category="ai" data-aos="fade-up" data-aos-delay="500">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder ai-bg">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div class="project-overlay">
+              <a href="#" class="proj-btn">Live Demo <i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="proj-btn proj-btn-outline">GitHub <i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category-badge ai-badge">AI / ML</div>
+            <h3>Face Recognition System</h3>
+            <p>Real-time face detection and recognition using deep learning. Supports multi-face tracking with 98% accuracy on standard benchmarks using OpenCV.</p>
+            <div class="project-tech">
+              <span>Python</span><span>OpenCV</span><span>DeepFace</span><span>NumPy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass-card" data-tilt data-tilt-glare data-category="data" data-aos="fade-up" data-aos-delay="600">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder data-bg">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <div class="project-overlay">
+              <a href="#" class="proj-btn">Live Demo <i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="proj-btn proj-btn-outline">GitHub <i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-category-badge data-badge">Data Science</div>
+            <h3>Sentiment Analysis Engine</h3>
+            <p>NLP pipeline that analyzes sentiment from social media data. Processes thousands of tweets/reviews per second with live sentiment visualization.</p>
+            <div class="project-tech">
+              <span>Python</span><span>BERT</span><span>Tweepy</span><span>Streamlit</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 5 — RESUME
+  ══════════════════════════════════════════════ -->
+  <section class="section resume-section" id="resume">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">My Journey</span>
+        <h2 class="section-title">Education & <span class="accent">Experience</span></h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="resume-grid">
+        <!-- Education Timeline -->
+        <div class="timeline-col" data-aos="fade-right" data-aos-delay="100">
+          <h3 class="timeline-heading"><i class="fas fa-graduation-cap"></i> Education</h3>
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content glass-card" data-tilt>
+                <span class="timeline-year">2023 – Present</span>
+                <h4>PG Diploma in AI, Data Science & Cyber Security</h4>
+                <p class="timeline-org"><i class="fas fa-school"></i> Institute of Advanced Computing</p>
+                <p>Specializing in machine learning algorithms, big data analytics, neural networks, and ethical hacking. Hands-on with real-world datasets and security labs.</p>
+                <div class="timeline-tags">
+                  <span>AI/ML</span><span>Data Science</span><span>Cyber Security</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content glass-card" data-tilt>
+                <span class="timeline-year">2020 – 2023</span>
+                <h4>Bachelor of Computer Applications (BCA)</h4>
+                <p class="timeline-org"><i class="fas fa-university"></i> University College</p>
+                <p>Core studies in programming fundamentals, data structures, algorithms, database management, and web technologies. Graduated with distinction.</p>
+                <div class="timeline-tags">
+                  <span>Programming</span><span>DBMS</span><span>Web Dev</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Experience & Certifications -->
+        <div class="timeline-col" data-aos="fade-left" data-aos-delay="200">
+          <h3 class="timeline-heading"><i class="fas fa-certificate"></i> Certifications</h3>
+          <div class="cert-grid">
+            <div class="cert-card glass-card" data-tilt>
+              <div class="cert-icon"><i class="fab fa-python"></i></div>
+              <div>
+                <h4>Python for Data Science</h4>
+                <p>IBM / Coursera</p>
+              </div>
+            </div>
+            <div class="cert-card glass-card" data-tilt>
+              <div class="cert-icon"><i class="fas fa-brain"></i></div>
+              <div>
+                <h4>Machine Learning Specialization</h4>
+                <p>Andrew Ng / Coursera</p>
+              </div>
+            </div>
+            <div class="cert-card glass-card" data-tilt>
+              <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <h4>Google Cybersecurity Certificate</h4>
+                <p>Google / Coursera</p>
+              </div>
+            </div>
+            <div class="cert-card glass-card" data-tilt>
+              <div class="cert-icon"><i class="fas fa-fire"></i></div>
+              <div>
+                <h4>TensorFlow Developer</h4>
+                <p>Google / TensorFlow</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Download CTA -->
+          <div class="resume-cta glass-card" data-aos="zoom-in" data-aos-delay="400">
+            <i class="fas fa-file-pdf resume-cta-icon"></i>
+            <div>
+              <h4>Want the full picture?</h4>
+              <p>Download my complete resume with all details.</p>
+            </div>
+            <a href="resume.pdf" download class="btn btn-primary glow-btn">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 6 — CONTACT
+  ══════════════════════════════════════════════ -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Let's Connect</span>
+        <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Contact Info -->
+        <div class="contact-info" data-aos="fade-right" data-aos-delay="100">
+          <h3>Let's work together!</h3>
+          <p>Whether you have a project in mind, want to collaborate, or just want to say hi — my inbox is always open.</p>
+
+          <div class="contact-cards">
+            <a href="#" class="contact-card glass-card" id="emailCard" data-u="shibin" data-d="example.com">
+              <div class="contact-card-icon email-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span class="contact-label">Email</span>
+                <span class="contact-value" id="emailDisplay">Loading...</span>
+              </div>
+            </a>
+            <a href="tel:+919876543210" class="contact-card glass-card">
+              <div class="contact-card-icon phone-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">+91 98765 43210</span>
+              </div>
+            </a>
+            <a href="#" class="contact-card glass-card">
+              <div class="contact-card-icon github-icon"><i class="fab fa-github"></i></div>
+              <div>
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">github.com/shibin</span>
+              </div>
+            </a>
+            <a href="#" class="contact-card glass-card">
+              <div class="contact-card-icon linkedin-icon"><i class="fab fa-linkedin-in"></i></div>
+              <div>
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">linkedin.com/in/shibin</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap" data-aos="fade-left" data-aos-delay="200">
+          <form class="contact-form glass-card" id="contactForm" novalidate autocomplete="off">
+            <h3>Send a Message</h3>
+
+            <!-- Honeypot -->
+            <div class="hp-field" aria-hidden="true" tabindex="-1">
+              <label for="hp_website">Website</label>
+              <input type="text" id="hp_website" name="website" autocomplete="off" tabindex="-1"/>
+            </div>
+            <input type="hidden" id="csrfToken" name="_token" value=""/>
+            <input type="hidden" id="formTimestamp" name="_ts" value=""/>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <div class="input-wrap">
+                  <i class="fas fa-user input-icon"></i>
+                  <input type="text" id="contactName" name="name" placeholder="John Doe" required maxlength="80" pattern="[A-Za-z\s.'-]+"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <div class="input-wrap">
+                  <i class="fas fa-envelope input-icon"></i>
+                  <input type="email" id="contactEmail" name="email" placeholder="john@example.com" required maxlength="120"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <div class="input-wrap">
+                <i class="fas fa-tag input-icon"></i>
+                <input type="text" id="contactSubject" name="subject" placeholder="Project Collaboration" maxlength="150"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <div class="input-wrap textarea-wrap">
+                <i class="fas fa-comment input-icon textarea-icon"></i>
+                <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me about your project or idea..." required maxlength="2000"></textarea>
+              </div>
+              <small class="char-counter" id="msgCounter">0 / 2000</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full glow-btn" id="sendBtn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+
+            <div class="form-success" id="formSuccess">
+              <i class="fas fa-check-circle"></i> Message sent! I'll get back to you soon.
+            </div>
+
+            <div class="form-error" id="formError">
+              <i class="fas fa-exclamation-triangle"></i> <span id="formErrorMsg">Something went wrong.</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <span class="logo-accent">&lt;</span>Shibin<span class="logo-accent">/&gt;</span>
+      </div>
+      <p class="footer-text">Crafted with <span class="heart">❤️</span> by Shibin &nbsp;·&nbsp; AI & Data Science Developer</p>
+      <div class="footer-socials">
+        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="mailto:shibin@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="footer-copy">© 2026 Shibin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Custom Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

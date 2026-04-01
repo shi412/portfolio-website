@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Shibin Shaji – Cybersecurity & Networking Learner from Kerala, India. IT Student Portfolio."/>
+  <title>Shibin Shaji | Cybersecurity Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- AOS Animate on Scroll -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+  <!-- Custom Styles (force reload with ?v=3) -->
+  <link rel="stylesheet" href="style.css?v=3"/>
+</head>
+<body>
+
+  <!-- ══ CANVAS BACKGROUNDS ══ -->
+  <canvas id="matrixCanvas"></canvas>
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ══ CUSTOM CURSOR — 3 LAYERS ══ -->
+  <div class="cursor-aura"  id="cursorAura"></div>
+  <div class="cursor-ring"  id="cursorRing"></div>
+  <div class="cursor-dot"   id="cursorDot"></div>
+
+  <!-- ══ BACKGROUND BLOB ══ -->
+  <div class="bg-blob" id="bgBlob"></div>
+
+  <!-- ══ LOADING SCREEN ══ -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader-terminal">
+      <div class="terminal-bar">
+        <span class="t-dot red"></span>
+        <span class="t-dot yellow"></span>
+        <span class="t-dot green"></span>
+        <span class="t-title">terminal — shibin@kali</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">root@kali:~$</span> <span class="t-cmd" id="loaderCmd"></span><span class="t-cursor">█</span></div>
+        <div class="t-output" id="loaderOutput"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-brand">
+        <span class="brand-bracket">[</span>SHIBIN<span class="brand-dot">_</span>SHAJI<span class="brand-bracket">]</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"    class="nav-link active" data-nav="home">Home</a></li>
+        <li><a href="#about"   class="nav-link" data-nav="about">About</a></li>
+        <li><a href="#skills"  class="nav-link" data-nav="skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-nav="projects">Projects</a></li>
+        <li><a href="#certs"   class="nav-link" data-nav="certs">Certs</a></li>
+        <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════ -->
+  <section id="home" class="section hero-section">
+    <div class="hero-inner">
+
+      <!-- Left: Photo -->
+      <div class="hero-photo-wrap" data-aos="fade-right" data-aos-delay="200">
+        <div class="hex-frame">
+          <div class="hex-glow"></div>
+          <div class="hex-border hex-b1"></div>
+          <div class="hex-border hex-b2"></div>
+          <div class="hex-img-wrap">
+            <img src="profile.png" alt="Shibin Shaji" id="profileImg"/>
+          </div>
+          <div class="scan-corner sc-tl"></div>
+          <div class="scan-corner sc-tr"></div>
+          <div class="scan-corner sc-bl"></div>
+          <div class="scan-corner sc-br"></div>
+        </div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span>Available for Opportunities</span>
+        </div>
+      </div>
+
+      <!-- Right: Text -->
+      <div class="hero-text" data-aos="fade-left" data-aos-delay="300">
+        <div class="hero-tag"><i class="fas fa-terminal"></i> &nbsp;IT Student · Kerala, India</div>
+        <h1 class="hero-name">
+          <span class="name-line1">Shibin</span>
+          <span class="name-line2">Shaji</span>
+        </h1>
+        <div class="hero-role">
+          <span class="role-prefix">&gt;&gt;&nbsp;</span>
+          <span id="typewriter"></span><span class="t-caret">|</span>
+        </div>
+        <p class="hero-tagline">
+          Exploring the depths of <span class="hl">Cybersecurity</span> &amp; <span class="hl">Networking</span> —
+          one packet at a time. Building secure systems and solving real-world problems.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary" id="viewProjectsBtn">
+            <i class="fas fa-folder-open"></i> View Projects
+          </a>
+          <a href="#contact" class="btn btn-outline" id="contactMeBtn">
+            <i class="fas fa-paper-plane"></i> Contact Me
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat">
+            <span class="hstat-num">3+</span>
+            <span class="hstat-lbl">Projects</span>
+          </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <span class="hstat-num">5+</span>
+            <span class="hstat-lbl">Skills</span>
+          </div>
+          <div class="hstat-div"></div>
+          <div class="hstat">
+            <span class="hstat-num">2+</span>
+            <span class="hstat-lbl">Certifications</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-arrow"></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — ABOUT
+  ══════════════════════════════════════ -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sec-tag"><i class="fas fa-user-secret"></i> // about_me</span>
+        <h2 class="sec-title">Who Am <span class="accent">I?</span></h2>
+        <div class="sec-line"></div>
+      </div>
+
+      <div class="about-grid">
+        <div class="terminal-card" data-aos="fade-right" data-aos-delay="100">
+          <div class="terminal-bar">
+            <span class="t-dot red"></span>
+            <span class="t-dot yellow"></span>
+            <span class="t-dot green"></span>
+            <span class="t-title">shibin@kali: ~/about</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-prompt">$</span> cat profile.txt</div>
+            <div class="t-output mt8">
+              <div class="tl"><span class="tk">Name</span><span class="tv">Shibin Shaji</span></div>
+              <div class="tl"><span class="tk">Role</span><span class="tv">Cybersecurity &amp; Networking Learner</span></div>
+              <div class="tl"><span class="tk">Location</span><span class="tv">Kerala, India</span></div>
+              <div class="tl"><span class="tk">Focus</span><span class="tv">Ethical Hacking, Linux, Networking</span></div>
+              <div class="tl"><span class="tk">Status</span><span class="tv t-green">[ LEARNING &amp; BUILDING ]</span></div>
+            </div>
+            <br/>
+            <div class="t-line"><span class="t-prompt">$</span> cat mission.txt</div>
+            <div class="t-output mt8 t-muted">
+              → Passionate IT student diving deep into the world<br/>
+              &nbsp;&nbsp;of cybersecurity and ethical hacking.<br/>
+              → Mastering Linux, networking protocols,<br/>
+              &nbsp;&nbsp;and Python scripting for security tools.<br/>
+              → Building projects that solve real-world problems<br/>
+              &nbsp;&nbsp;and contribute to a safer digital world.
+            </div>
+          </div>
+        </div>
+
+        <div class="about-cards" data-aos="fade-left" data-aos-delay="200">
+          <div class="about-card" data-aos="zoom-in" data-aos-delay="150">
+            <div class="ac-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+              <h4>Cybersecurity</h4>
+              <p>Learning ethical hacking, vulnerability assessment, and network defense strategies.</p>
+            </div>
+          </div>
+          <div class="about-card" data-aos="zoom-in" data-aos-delay="250">
+            <div class="ac-icon net"><i class="fas fa-network-wired"></i></div>
+            <div>
+              <h4>Networking</h4>
+              <p>Studying TCP/IP, routing protocols, subnetting, and network architecture using labs.</p>
+            </div>
+          </div>
+          <div class="about-card" data-aos="zoom-in" data-aos-delay="350">
+            <div class="ac-icon linux"><i class="fab fa-linux"></i></div>
+            <div>
+              <h4>Linux &amp; Shell</h4>
+              <p>Comfortable with Linux environments, Bash scripting, and command-line security tools.</p>
+            </div>
+          </div>
+          <div class="about-card" data-aos="zoom-in" data-aos-delay="450">
+            <div class="ac-icon py"><i class="fab fa-python"></i></div>
+            <div>
+              <h4>Python Scripting</h4>
+              <p>Writing automation scripts, network tools, and security utilities using Python.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — SKILLS
+  ══════════════════════════════════════ -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sec-tag"><i class="fas fa-code"></i> // skill_set</span>
+        <h2 class="sec-title">My <span class="accent">Skills</span></h2>
+        <div class="sec-line"></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Networking</h3>
+          <p>TCP/IP · Subnetting · DNS · DHCP · Routing Protocols · Wireshark</p>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar" data-width="75"><div class="skill-bar-fill"></div></div>
+            <span class="skill-pct">75%</span>
+          </div>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-icon linux-i"><i class="fab fa-linux"></i></div>
+          <h3>Linux</h3>
+          <p>Kali Linux · Ubuntu · Bash · File System · Permissions · CLI Tools</p>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar" data-width="70"><div class="skill-bar-fill"></div></div>
+            <span class="skill-pct">70%</span>
+          </div>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-icon py-i"><i class="fab fa-python"></i></div>
+          <h3>Python Basics</h3>
+          <p>Scripting · Automation · Socket Programming · File Handling · OOP</p>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar" data-width="60"><div class="skill-bar-fill"></div></div>
+            <span class="skill-pct">60%</span>
+          </div>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="skill-icon sec-i"><i class="fas fa-shield-alt"></i></div>
+          <h3>Cybersecurity</h3>
+          <p>Network Security · Vulnerability Analysis · OSINT · Security Concepts</p>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar" data-width="65"><div class="skill-bar-fill"></div></div>
+            <span class="skill-pct">65%</span>
+          </div>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="skill-icon hack-i"><i class="fas fa-user-secret"></i></div>
+          <h3>Ethical Hacking</h3>
+          <p>Penetration Testing · CTF Challenges · TryHackMe · Nmap · Metasploit</p>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar" data-width="60"><div class="skill-bar-fill"></div></div>
+            <span class="skill-pct">60%</span>
+          </div>
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="350">
+          <div class="skill-icon ps-i"><i class="fas fa-puzzle-piece"></i></div>
+          <h3>Problem Solving</h3>
+          <p>Analytical Thinking · CTF Mindset · Root Cause Analysis · Logic Building</p>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar" data-width="80"><div class="skill-bar-fill"></div></div>
+            <span class="skill-pct">80%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-row" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="tools-title">Tools &amp; Platforms</h3>
+        <div class="tools-list">
+          <div class="tool-pill"><i class="fas fa-bug"></i> Nmap</div>
+          <div class="tool-pill"><i class="fas fa-bug"></i> Metasploit</div>
+          <div class="tool-pill"><i class="fas fa-eye"></i> Wireshark</div>
+          <div class="tool-pill"><i class="fab fa-linux"></i> Kali Linux</div>
+          <div class="tool-pill"><i class="fas fa-terminal"></i> Bash</div>
+          <div class="tool-pill"><i class="fab fa-python"></i> Python</div>
+          <div class="tool-pill"><i class="fas fa-flag"></i> TryHackMe</div>
+          <div class="tool-pill"><i class="fab fa-github"></i> GitHub</div>
+          <div class="tool-pill"><i class="fas fa-lock"></i> Burp Suite</div>
+          <div class="tool-pill"><i class="fas fa-network-wired"></i> Cisco Packet Tracer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — PROJECTS
+  ══════════════════════════════════════ -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sec-tag"><i class="fas fa-folder-tree"></i> // my_projects</span>
+        <h2 class="sec-title">Featured <span class="accent">Projects</span></h2>
+        <div class="sec-line"></div>
+      </div>
+
+      <div class="projects-grid">
+        <div class="proj-card featured" data-aos="fade-up" data-aos-delay="100">
+          <div class="proj-header">
+            <div class="proj-icon skill-c"><i class="fas fa-people-group"></i></div>
+            <div class="proj-badges">
+              <span class="pbadge web">Web App</span>
+              <span class="pbadge featured-b">Featured</span>
+            </div>
+          </div>
+          <h3 class="proj-title">SkillConnect</h3>
+          <p class="proj-sub">Part-Time Job Finder &amp; Peer-to-Peer Learning Platform</p>
+          <p class="proj-desc">A platform connecting students with part-time opportunities and enabling peer-to-peer skill exchange. Built to solve real employment challenges faced by students in Kerala.</p>
+          <div class="proj-tech">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>MySQL</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" class="pl-btn pl-outline"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="proj-header">
+            <div class="proj-icon net-c"><i class="fas fa-network-wired"></i></div>
+            <div class="proj-badges"><span class="pbadge net-b">Networking</span></div>
+          </div>
+          <h3 class="proj-title">Networking Labs Practice</h3>
+          <p class="proj-sub">Hands-on Network Simulation &amp; Configuration</p>
+          <p class="proj-desc">Collection of networking lab exercises using Cisco Packet Tracer and GNS3. Covers VLAN, routing protocols (OSPF, RIP), subnetting, and troubleshooting with detailed documentation.</p>
+          <div class="proj-tech">
+            <span>Cisco Packet Tracer</span><span>GNS3</span><span>TCP/IP</span><span>OSPF</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="proj-header">
+            <div class="proj-icon linux-c"><i class="fas fa-terminal"></i></div>
+            <div class="proj-badges"><span class="pbadge linux-b">Linux</span></div>
+          </div>
+          <h3 class="proj-title">Linux Shell Programs</h3>
+          <p class="proj-sub">Bash Scripting &amp; Automation Collection</p>
+          <p class="proj-desc">Repository of Bash shell scripts for system automation, file management, network scanning, and security tasks. Includes log analysis, user management, and system health monitoring.</p>
+          <div class="proj-tech">
+            <span>Bash</span><span>Linux</span><span>Shell</span><span>Automation</span>
+          </div>
+          <div class="proj-links">
+            <a href="#" class="pl-btn"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 — CERTIFICATIONS
+  ══════════════════════════════════════ -->
+  <section id="certs" class="section certs-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sec-tag"><i class="fas fa-certificate"></i> // certifications</span>
+        <h2 class="sec-title">Learning &amp; <span class="accent">Certifications</span></h2>
+        <div class="sec-line"></div>
+      </div>
+
+      <div class="certs-grid">
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="cert-logo thm"><i class="fas fa-flag"></i></div>
+          <div class="cert-info">
+            <h4>TryHackMe</h4>
+            <p>Active CTF learner completing rooms on penetration testing, web hacking, network security, and Linux fundamentals.</p>
+            <div class="cert-tags"><span>CTF</span><span>Pen Testing</span><span>Web Hacking</span></div>
+          </div>
+          <a href="https://tryhackme.com" target="_blank" class="cert-link"><i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="cert-logo cyber"><i class="fas fa-shield-halved"></i></div>
+          <div class="cert-info">
+            <h4>Cybersecurity Fundamentals</h4>
+            <p>Studying core cybersecurity concepts: network security, cryptography, threat analysis, and security frameworks (CIA Triad, OWASP).</p>
+            <div class="cert-tags"><span>Cryptography</span><span>OWASP</span><span>Threat Analysis</span></div>
+          </div>
+          <a href="#" class="cert-link"><i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="cert-logo net-l"><i class="fas fa-network-wired"></i></div>
+          <div class="cert-info">
+            <h4>Networking Study</h4>
+            <p>Self-study aligned with CCNA curriculum. Covers OSI model, IP addressing, VLANs, routing, switching, and WAN technologies.</p>
+            <div class="cert-tags"><span>CCNA</span><span>OSI Model</span><span>Routing</span></div>
+          </div>
+          <a href="#" class="cert-link"><i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cert-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="cert-logo linux-l"><i class="fab fa-linux"></i></div>
+          <div class="cert-info">
+            <h4>Linux &amp; Ethical Hacking</h4>
+            <p>Hands-on practice with Kali Linux, penetration testing tools, and ethical hacking methodology through real-world lab environments.</p>
+            <div class="cert-tags"><span>Kali Linux</span><span>Nmap</span><span>Metasploit</span></div>
+          </div>
+          <a href="#" class="cert-link"><i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="learning-progress" data-aos="fade-up" data-aos-delay="200">
+        <h3><i class="fas fa-chart-line"></i> &nbsp;Current Learning Progress</h3>
+        <div class="lp-grid">
+          <div class="lp-item">
+            <span class="lp-label">TryHackMe Rooms Completed</span>
+            <div class="lp-bar"><div class="lp-fill" data-w="55"></div></div>
+            <span class="lp-pct">55%</span>
+          </div>
+          <div class="lp-item">
+            <span class="lp-label">CCNA Networking Knowledge</span>
+            <div class="lp-bar"><div class="lp-fill" data-w="70"></div></div>
+            <span class="lp-pct">70%</span>
+          </div>
+          <div class="lp-item">
+            <span class="lp-label">Linux Proficiency</span>
+            <div class="lp-bar"><div class="lp-fill" data-w="72"></div></div>
+            <span class="lp-pct">72%</span>
+          </div>
+          <div class="lp-item">
+            <span class="lp-label">Python Scripting</span>
+            <div class="lp-bar"><div class="lp-fill" data-w="60"></div></div>
+            <span class="lp-pct">60%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 6 — CONTACT
+  ══════════════════════════════════════ -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="sec-tag"><i class="fas fa-satellite-dish"></i> // contact_me</span>
+        <h2 class="sec-title">Get In <span class="accent">Touch</span></h2>
+        <div class="sec-line"></div>
+        <p class="sec-sub">Have a project, collaboration, or just want to say hi? Always open to connect!</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-links" data-aos="fade-right" data-aos-delay="100">
+          <a href="mailto:shibinshaji428@gmail.com" class="cl-card">
+            <div class="cl-icon email-i"><i class="fas fa-envelope"></i></div>
+            <div class="cl-text">
+              <span class="cl-label">Email</span>
+              <span class="cl-val">shibinshaji428@gmail.com</span>
+            </div>
+            <i class="fas fa-chevron-right cl-arr"></i>
+          </a>
+          <a href="https://github.com/shibin" target="_blank" class="cl-card">
+            <div class="cl-icon github-i"><i class="fab fa-github"></i></div>
+            <div class="cl-text">
+              <span class="cl-label">GitHub</span>
+              <span class="cl-val">github.com/shibin</span>
+            </div>
+            <i class="fas fa-chevron-right cl-arr"></i>
+          </a>
+          <a href="https://linkedin.com/in/shibin-shaji" target="_blank" class="cl-card">
+            <div class="cl-icon linkedin-i"><i class="fab fa-linkedin-in"></i></div>
+            <div class="cl-text">
+              <span class="cl-label">LinkedIn</span>
+              <span class="cl-val">linkedin.com/in/shibin-shaji</span>
+            </div>
+            <i class="fas fa-chevron-right cl-arr"></i>
+          </a>
+          <a href="https://www.instagram.com/shibin.shajii?utm_source=qr&igsh=bjNiejFjeG9pdXRl" target="_blank" class="cl-card">
+            <div class="cl-icon insta-i"><i class="fab fa-instagram"></i></div>
+            <div class="cl-text">
+              <span class="cl-label">Instagram</span>
+              <span class="cl-val">@shibin.shajii</span>
+            </div>
+            <i class="fas fa-chevron-right cl-arr"></i>
+          </a>
+          <div class="cl-card location">
+            <div class="cl-icon loc-i"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="cl-text">
+              <span class="cl-label">Location</span>
+              <span class="cl-val">Kerala, India 🇮🇳</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-aos="fade-left" data-aos-delay="200">
+          <div class="terminal-card form-terminal">
+            <div class="terminal-bar">
+              <span class="t-dot red"></span>
+              <span class="t-dot yellow"></span>
+              <span class="t-dot green"></span>
+              <span class="t-title">send_message.sh</span>
+            </div>
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname"><span class="t-prompt">$</span> your_name</label>
+                  <input type="text" id="fname" name="name" placeholder="Your Name" required maxlength="80"/>
+                </div>
+                <div class="form-group">
+                  <label for="femail"><span class="t-prompt">$</span> your_email</label>
+                  <input type="email" id="femail" name="email" placeholder="your@email.com" required maxlength="120"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fsubject"><span class="t-prompt">$</span> subject</label>
+                <input type="text" id="fsubject" name="subject" placeholder="Collaboration / Query" maxlength="150"/>
+              </div>
+              <div class="form-group">
+                <label for="fmsg"><span class="t-prompt">$</span> message</label>
+                <textarea id="fmsg" name="message" rows="5" placeholder="Type your message..." required maxlength="2000"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full" id="sendBtn">
+                <i class="fas fa-paper-plane"></i> &nbsp;./send_message
+              </button>
+              <div class="form-feedback" id="formFeedback"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-bracket">[</span>SHIBIN<span class="brand-dot">_</span>SHAJI<span class="brand-bracket">]</span>
+      </div>
+      <p class="footer-copy">© 2026 Shibin – Cybersecurity Portfolio &nbsp;·&nbsp; Kerala, India</p>
+      <div class="footer-socials">
+        <a href="mailto:shibinshaji428@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/shibin" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/shibin-shaji" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/shibin.shajii?utm_source=qr&igsh=bjNiejFjeG9pdXRl" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-line">
+      <span>&lt; Built with </span><i class="fas fa-heart" style="color:#00ff9d;"></i><span> &amp; </span><i class="fas fa-terminal" style="color:#00d4ff;"></i><span> by Shibin Shaji /&gt;</span>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Force reload with ?v=3 to bypass cache -->
+  <script src="script.js?v=3"></script>
+</body>
+</html>
